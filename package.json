@@ -1,0 +1,15 @@
+{
+  "name": "ff2hls",
+  "version": "0.1.0",
+  "description": "Helper function for transcoding video with nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hls",
+    "video"
+  ],
+  "author": "Evan Sonderegger",
+  "license": "MIT"
+}
