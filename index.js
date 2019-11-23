@@ -14,9 +14,13 @@ function encode(inputFile, streams, outputPath, options) {
     const bitrate = Math.round(bitrateForPixels(width * height));
     return { height, width, bitrate };
   })
+  theStreams.sort((a, b) => {
+    return b.bitrate - a.bitrate;
+  });
   const outputArgs = theStreams.map(stream => [
     '-vf',
     `scale=w=${stream.width}:h=${stream.height}:force_original_aspect_ratio=decrease`,
+    '-sn',
     '-c:a',
     'aac',
     '-ar',
