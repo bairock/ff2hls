@@ -4,12 +4,27 @@
   "description": "Helper function for transcoding video with nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --ext .js .",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esonderegger/ff2hls.git"
   },
   "keywords": [
     "hls",
     "video"
   ],
   "author": "Evan Sonderegger",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ffprobe": "^1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.0.4",
+    "jest": "^24.9.0"
+  }
 }
