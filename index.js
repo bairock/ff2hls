@@ -26,6 +26,7 @@ function doEncode(inputFile, streams, outputPath) {
 function encode(inputFile, streams, outputPath) {
   return new Promise((resolve, reject) => {
     ffprobe(inputFile, { path: 'ffprobe' })
+      // .then((pr) => console.log(JSON.stringify(pr, null, 2)))
       .then((probeResults) => {
         const calcStreams = utils.applicableStreams(streams, probeResults);
         return doEncode(inputFile, calcStreams, outputPath);

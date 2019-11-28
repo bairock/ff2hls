@@ -25,7 +25,39 @@ test('applicableStreams does not upscale', () => {
   const fixturePath = 'testFixtures/ffprobe_720p_no_captions.json';
   const probeData = JSON.parse(fs.readFileSync(fixturePath));
   const result = utils.applicableStreams(basicInput, probeData);
-  expect(result.length).toEqual(3);
+  const expectedHeights = [720, 540, 360];
+  const actualHeights = result.map((stream) => stream.height);
+  expect(actualHeights).toEqual(expectedHeights);
+});
+
+test('applicableStreams can scale by width', () => {
+  const basicInput = { width: [640, 800, 1280, 1600] };
+  const fixturePath = 'testFixtures/ffprobe_720p_no_captions.json';
+  const probeData = JSON.parse(fs.readFileSync(fixturePath));
+  const result = utils.applicableStreams(basicInput, probeData);
+  const expectedHeights = [720, 450, 360];
+  const actualHeights = result.map((stream) => stream.height);
+  expect(actualHeights).toEqual(expectedHeights);
+});
+
+test('applicableStreams can handle portrait input', () => {
+  const basicInput = { height: [640, 960, 1280, 1600] };
+  const fixturePath = 'testFixtures/ffprobe_portrait.json';
+  const probeData = JSON.parse(fs.readFileSync(fixturePath));
+  const result = utils.applicableStreams(basicInput, probeData);
+  const expectedWidths = [900, 720, 540, 360];
+  const actualWidths = result.map((stream) => stream.width);
+  expect(actualWidths).toEqual(expectedWidths);
+});
+
+test('applicableStreams can scale portrait inputs by width', () => {
+  const basicInput = { width: [270, 450, 630, 810] };
+  const fixturePath = 'testFixtures/ffprobe_portrait.json';
+  const probeData = JSON.parse(fs.readFileSync(fixturePath));
+  const result = utils.applicableStreams(basicInput, probeData);
+  const expectedHeights = [1440, 1120, 800, 480];
+  const actualHeights = result.map((stream) => stream.height);
+  expect(actualHeights).toEqual(expectedHeights);
 });
 
 test('masterManifest returns m3u8 text', () => {
