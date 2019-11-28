@@ -45,10 +45,10 @@ function streamFfArgs(stream, outputPath) {
 }
 
 function applicableStreams(streams, probe) {
-  const streamsArray = streams.height ? streams.height : streams.width;
   const videoStream = probe.streams.find((s) => s.codec_type === 'video');
   const aspect = videoStream.width / videoStream.height;
-  const notUpscaled = streamsArray.filter((s) => videoStream.height >= s);
+  const heights = streams.height ? streams.height : streams.width.map((s) => s / aspect);
+  const notUpscaled = heights.filter((s) => videoStream.height >= s);
   const theStreams = notUpscaled.map((s) => {
     const height = s;
     const width = height * aspect;
