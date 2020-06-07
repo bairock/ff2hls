@@ -79,7 +79,7 @@ function masterManifest(videoStreams, captionStreams) {
   videoStreams.forEach((s) => {
     const videoArgs = [
       `#EXT-X-STREAM-INF:BANDWIDTH=${s.bitrate}000`,
-      `RESOLUTION=${s.width}x${s.height}`,
+      `RESOLUTION=${Math.round(s.width)}x${Math.round(s.height)}`,
     ];
     manifestLines.push(videoArgs.join(','));
     manifestLines.push(`${s.height}p.m3u8`);
