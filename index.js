@@ -12,11 +12,11 @@ function doEncode(inputFile, streams, outputPath) {
   proc.stderr.on('data', (data) => console.log(data.toString()));
   return new Promise((resolve, reject) => {
     proc.on('close', () => {
-      fs.writeFile(`${outputPath}/master.m3u8`, masterText, (err) => {
+      fs.writeFile(`${outputPath}/playlist.m3u8`, masterText, (err) => {
         if (err) {
           reject(err);
         } else {
-          resolve(`${outputPath}/master.m3u8`);
+          resolve(`${outputPath}/playlist.m3u8`);
         }
       });
     });
