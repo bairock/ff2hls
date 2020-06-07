@@ -6,7 +6,7 @@ function magicBitrate(width, height) {
 function streamFfArgs(stream, outputPath) {
   return [
     '-vf',
-    `scale=w=${stream.width}:h=${stream.height}:force_original_aspect_ratio=decrease`,
+    `scale=w=${stream.width}:h=${stream.height}:force_original_aspect_ratio=decrease,pad='iw+mod(iw\,2)':'ih+mod(ih\,2)`,
     '-sn',
     '-c:a',
     'aac',
