@@ -9,7 +9,7 @@ function streamFfArgs(stream, outputPath) {
     `scale=w=${stream.width}:h=${stream.height}:force_original_aspect_ratio=decrease,pad='iw+mod(iw\,2)':'ih+mod(ih\,2)`,
     '-sn',
     '-c:a',
-    'copy',
+    'mp3',
     '-ar',
     '48000',
     '-pix_fmt',
